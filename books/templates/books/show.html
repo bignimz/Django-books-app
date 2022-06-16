@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Tailwind css -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    /> -->
+
+    <!-- Bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">Django Books App</a>
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    <div class="container my-5">
+      <div class="row ">
+        <div
+          class="d-flex justify-self-center m-10 gap-4"
+        >
+          <img
+            src="{{book.thumbnailUrl}}"
+            alt=""
+            style="width: 400px"
+            height="auto"
+          />
+          <div class="book-content" style="max-width: 600px">
+            <h2 class="text-4xl mb-5">{{book.title}}</h2>
+            <p class="my-5">
+              <strong class="text-xl">No. of Pages: </strong> {{book.pageCount}}
+            </p>
+            <p class="my-5">
+              <strong class="text-xl">Author: </strong> {{book.author}}
+            </p>
+            <p>
+              <strong class="text-2xl">Description:</strong>
+              <br />{{book.longDescription}}
+            </p>
+
+          </div>
+        </div>
+        <div class="reviews bg-light-gray my-4 p-5">
+          {% for review in reviews %}
+          <p class="background-gray">"{{review.body}}"</p>
+          {% endfor %}
+        </div>
+        <div class="mt-10">
+          <form action="{% url 'review' %}" method="post">
+            {% csrf_token %}
+            <textarea
+              class="border rounded p-2 form-control"
+              name="review"
+              id="review"
+              cols="30"
+              rows="10"
+              placeholder="Add a review"
+            ></textarea
+            ><br />
+            <button
+              class="btn border rounded p-2 btn-dark text-white"
+              type="submit"
+            />
+            Submit Review
+          </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
