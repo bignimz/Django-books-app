@@ -18,7 +18,7 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <title>Django Books App</title>
   </head>
   <body>
     <!-- Navbar -->
@@ -40,9 +40,11 @@
     <!-- <h1 class="text-center fs-2 mb-2">Django Books App</h1> -->
     <h1 class="text-center fs-2 mt-3 mb-5">Programming Books</h1>
     <div class="container">
-      <div class="row row-cols-md-4 row-cols-sm-1 gap-2 my-10 mx-auto">
+      <div
+        class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 gap-2 my-10 mx-auto"
+      >
         {% for book in books %}
-        <div class="col-3" style="max-width: 18rem">
+        <div class="col-lg-3 col-md-4 col-sm-12" style="max-width: 18rem">
           <a
             href="{% url 'show' book.id %}"
             class="justify-self-center text-center"
